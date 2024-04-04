@@ -11,11 +11,15 @@ struct OnBoardingView: View {
     @Binding var isPresented: Bool
     var body: some View {
         VStack {
-            Text("What's New in\nFind My")
+            Text("What's New in")
                 .font(.largeTitle)
                 .bold()
-                .multilineTextAlignment(.center)
-                .padding(.vertical, 40)
+                .padding(.top, 100)
+            Text("Find My")
+                .font(.largeTitle)
+                .bold()
+                .padding(.bottom, 40)
+                
             FeatureView(title: "Findable When Powered Off", description: "The Find My network will allow you to locate your iPhone when it's lost, erased, in power reserve mode, or even powered off. ", imageName: "location.fill.viewfinder")
             FeatureView(title: "Find My nwtword for AirPods", description: "Your AirPods are more Findable than ever with support for finding individual earbuds on a map. ", imageName: "airpodspro")
             FeatureView(title: "Refreshed Map", description: "Tap locations on the updated map to open the Maps app. ", imageName: "map")
