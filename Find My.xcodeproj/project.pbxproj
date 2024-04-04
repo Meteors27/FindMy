@@ -7,18 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DC8DB972BBEAA9C0051DC97 /* NearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC8DB962BBEAA9C0051DC97 /* NearbyView.swift */; };
 		3DE502482BBD42F000DA6A82 /* Find_MyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE502472BBD42F000DA6A82 /* Find_MyApp.swift */; };
 		3DE5024A2BBD42F000DA6A82 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE502492BBD42F000DA6A82 /* ContentView.swift */; };
 		3DE5024C2BBD42F100DA6A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5024B2BBD42F100DA6A82 /* Assets.xcassets */; };
 		3DE5024F2BBD42F100DA6A82 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5024E2BBD42F100DA6A82 /* Preview Assets.xcassets */; };
+		3DE502562BBD432B00DA6A82 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE502552BBD432B00DA6A82 /* MainView.swift */; };
+		3DE502582BBD433700DA6A82 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE502572BBD433700DA6A82 /* OnBoardingView.swift */; };
+		3DE5025A2BBD434900DA6A82 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE502592BBD434900DA6A82 /* PeopleView.swift */; };
+		3DE5025C2BBD435600DA6A82 /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5025B2BBD435600DA6A82 /* DeviceDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3DC8DB962BBEAA9C0051DC97 /* NearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyView.swift; sourceTree = "<group>"; };
 		3DE502442BBD42F000DA6A82 /* Find My.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Find My.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE502472BBD42F000DA6A82 /* Find_MyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Find_MyApp.swift; sourceTree = "<group>"; };
 		3DE502492BBD42F000DA6A82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3DE5024B2BBD42F100DA6A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DE5024E2BBD42F100DA6A82 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3DE502552BBD432B00DA6A82 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3DE502572BBD433700DA6A82 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		3DE502592BBD434900DA6A82 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
+		3DE5025B2BBD435600DA6A82 /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,11 @@
 			children = (
 				3DE502472BBD42F000DA6A82 /* Find_MyApp.swift */,
 				3DE502492BBD42F000DA6A82 /* ContentView.swift */,
+				3DE502552BBD432B00DA6A82 /* MainView.swift */,
+				3DC8DB962BBEAA9C0051DC97 /* NearbyView.swift */,
+				3DE502572BBD433700DA6A82 /* OnBoardingView.swift */,
+				3DE502592BBD434900DA6A82 /* PeopleView.swift */,
+				3DE5025B2BBD435600DA6A82 /* DeviceDetailView.swift */,
 				3DE5024B2BBD42F100DA6A82 /* Assets.xcassets */,
 				3DE5024D2BBD42F100DA6A82 /* Preview Content */,
 			);
@@ -138,6 +153,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DE5024A2BBD42F000DA6A82 /* ContentView.swift in Sources */,
+				3DE5025A2BBD434900DA6A82 /* PeopleView.swift in Sources */,
+				3DE502582BBD433700DA6A82 /* OnBoardingView.swift in Sources */,
+				3DE5025C2BBD435600DA6A82 /* DeviceDetailView.swift in Sources */,
+				3DE502562BBD432B00DA6A82 /* MainView.swift in Sources */,
+				3DC8DB972BBEAA9C0051DC97 /* NearbyView.swift in Sources */,
 				3DE502482BBD42F000DA6A82 /* Find_MyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,16 +6,15 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
+    @State var isSheetPresented = true
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        MainView()
+            .sheet(isPresented: $isSheetPresented) {
+                OnBoardingView(isPresented: $isSheetPresented)
+            }
     }
 }
 
