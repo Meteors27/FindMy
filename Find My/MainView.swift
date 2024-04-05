@@ -11,22 +11,22 @@ import MapKit
 struct MainView: View {
     var body: some View {
         TabView {
-            Map()
+            PeopleView()
                 .tabItem {
                     Image(systemName:"figure.2")
                     Text("People")
                 }
-            Map()
+            DevicesView()
                 .tabItem {
                     Image(systemName:"macbook.and.iphone")
                     Text("Devices")
                 }
-            Map()
+            ItemsView()
                 .tabItem {
                     Image(systemName:"circle.grid.2x2.fill")
                     Text("Items")
                 }
-            Map()
+            MeView()
                 .tabItem {
                     Image(systemName: "person.crop.circle.fill")
                     Text("Me")
