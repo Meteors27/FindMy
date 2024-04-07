@@ -7,12 +7,46 @@
 
 import SwiftUI
 
-struct View_Extensions: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+// Custom View Modifiers
+extension TabView {
+    @ViewBuilder
+    func tabSheet<SheetContent: View>(initialHeight: CGFloat = 100, sheetCornerRadius: CGFloat = 15, @ViewBuilder content: @escaping () -> SheetContent) -> some View {
+        self.modifier(BottomSheetModifier(initialHeight: initialHeight, sheetCornerRadius: sheetCornerRadius, sheetView: content()))
     }
 }
 
-#Preview {
-    View_Extensions()
+// Helper View Modifier
+fileprivate struct BottomSheetModifier<SheetContent: View>: ViewModifier {
+    var initialHeight: CGFloat
+    var sheetCornerRadius: CGFloat
+    var sheetView: SheetContent
+    // View Properties
+    @State private var showSheet: Bool = true
+    func body(content: Content) -> some View {
+        content
+            .sheet(isPresented: $showSheet, content: {
+                VStack(spacing: 0) {
+                    sheetView
+                        .background(.thickMaterial)
+                        .zIndex(0)
+                    Divider()
+                        .hidden()
+                    Rectangle()
+                        .fill(.clear)
+                        .frame(height: 55)
+                }
+                    .presentationDetents([.height(initialHeight), .medium, .fraction(0.99)])
+                    .presentationCornerRadius(sheetCornerRadius)
+                    .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                    .presentationBackground(.clear )
+                    .interactiveDismissDisabled()
+            })
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func hideNativeTabBar() -> some View {
+        self.toolbar(.hidden, for: .tabBar)
+    }
 }

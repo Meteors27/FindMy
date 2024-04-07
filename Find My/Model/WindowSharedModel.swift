@@ -5,4 +5,10 @@
 //  Created by william on 2024/4/7.
 //
 
-import Foundation
+import SwiftUI
+
+@Observable
+class WindowSharedModel {
+    var activeTab: Tab = .devices
+}
+ 
