@@ -46,7 +46,17 @@ struct MainView: View {
         .tabSheet(initialHeight: 110) {
             NavigationStack {
                 ScrollView {
-                    
+                    // show some sample mock devices
+                    VStack(spacing: 15) {
+                        if windowSharedModel.activeTab == .devices {
+                            DeviceRowView("iphone", "William's iPhone 15 Pro", "This iPhone")
+                            DeviceRowView("airpodspro", "William's AirPods Pro", "location 1")
+                            DeviceRowView("applewatch", "William's Apple Watch", "location 2")
+                            DeviceRowView("ipad", "William's iPad Pro", "location 3")
+                        }
+                    }
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 10)
                 }
                 .scrollIndicators(.hidden)
                 .scrollContentBackground(.hidden )
@@ -56,7 +66,7 @@ struct MainView: View {
                             .font(.title3)
                             .bold()
                     }
-                    if windowSharedModel.activeTab == .devices {
+                    if [.devices, .people, .items].contains(windowSharedModel.activeTab) {
                         ToolbarItem(placement: .topBarTrailing) {
                             Button(action: {
                             }, label: {
@@ -70,6 +80,35 @@ struct MainView: View {
         .onAppear {
             guard sceneDelegate.tabWindow == nil else {return}
             sceneDelegate.addTabBar(windowSharedModel)
+        }
+    }
+    
+    @ViewBuilder
+    func DeviceRowView(_ image: String, _ title: String, _ subTitle: String, _ distance: String? = nil) -> some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 20, height: 20)
+                .padding(8)
+                .background(.background)
+                .clipShape(Circle())
+                .padding(2)
+                .background(.ultraThinMaterial)
+                .clipShape(Circle())
+                // TODO: add a gray ring
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .bold()
+                    Text(subTitle)
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+            Text(distance ?? "0 km")
+                    .font(.callout)
+                    .foregroundStyle(.gray)
         }
     }
 }
