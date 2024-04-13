@@ -15,9 +15,9 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}
 
 struct CustomTabBar: View {
     @Environment(WindowSharedModel.self) private var windowSharedModel
