@@ -10,5 +10,6 @@ import SwiftUI
 @Observable
 class WindowSharedModel {
     var activeTab: Tab = .devices
+    var activeDevice: Device = .iphone
 }
  
