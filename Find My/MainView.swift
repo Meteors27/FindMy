@@ -138,6 +138,7 @@ struct MainView: View {
                         .font(.callout)
                         .foregroundStyle(.gray)
             }
+            .foregroundStyle(.foreground)
         }
     }
 }
