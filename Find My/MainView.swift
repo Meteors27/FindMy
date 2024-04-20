@@ -13,6 +13,7 @@ struct MainView: View {
     @Environment(SceneDelegate.self) private var sceneDelegate
     @State var deviceDetailPresented: Bool = false
     @State private var settingsDetent = PresentationDetent.medium
+    @State private var isBoardingPresented = true
     var body: some View {
         @Bindable var bindableObject = windowSharedModel
         TabView(selection: $bindableObject.activeTab) {
@@ -94,15 +95,21 @@ struct MainView: View {
                         .background(.regularMaterial)
                         .interactiveDismissDisabled()
                 })
+//                .sheet(isPresented: $isBoardingPresented) {
+//                    isBoardingPresented = false
+//                } content: {
+//                    OnBoardingView(isPresented: $isBoardingPresented)
+//                }
+
             }
         }
         .onAppear {
             guard sceneDelegate.tabWindow == nil else {return}
             sceneDelegate.addTabBar(windowSharedModel)
         }
-        .onChange(of: windowSharedModel.activeDevice) {
-            deviceDetailPresented = true
-        }
+//        .onChange(of: windowSharedModel.activeDevice) {
+//            deviceDetailPresented = true
+//        }
         
     }
     
@@ -111,6 +118,7 @@ struct MainView: View {
         Button {
             sceneDelegate.removeTabBar()
             windowSharedModel.activeDevice = device
+            deviceDetailPresented = true
             print("Current active device is \(windowSharedModel.activeDevice.name)")
         } label: {
             HStack(alignment: .top, spacing: 12) {
