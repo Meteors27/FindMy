@@ -11,6 +11,8 @@ import MapKit
 struct MainView: View {
     @Environment(WindowSharedModel.self) private var windowSharedModel
     @Environment(SceneDelegate.self) private var sceneDelegate
+    @State var deviceDetailPresented: Bool = false
+    @State private var settingsDetent = PresentationDetent.medium
     var body: some View {
         @Bindable var bindableObject = windowSharedModel
         TabView(selection: $bindableObject.activeTab) {
@@ -43,7 +45,7 @@ struct MainView: View {
                 .tag(Tab.me)
                 .hideNativeTabBar()
         }
-        .tabSheet(initialHeight: 110) {
+        .tabSheet(initialHeight: 110, settingsDetent: $settingsDetent) {
             NavigationStack {
                 ScrollView {
                     // show some sample mock devices
@@ -75,12 +77,33 @@ struct MainView: View {
                         }
                     }
                 })
+                .sheet(isPresented: $deviceDetailPresented, content: {
+                    VStack(spacing: 0) {
+                        DeviceDetailView(isShow: $deviceDetailPresented)
+                            .zIndex(0)
+                        Divider()
+                            .hidden()
+                        Rectangle()
+                            .fill(.clear)
+                            .frame(height: 55)
+                    }
+                        .presentationDetents([.height(100), .medium, .fraction(0.99)], selection: $settingsDetent)
+                        .presentationCornerRadius(15)
+                        .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                        .presentationBackground(.clear)
+                        .background(.regularMaterial)
+                        .interactiveDismissDisabled()
+                })
             }
         }
         .onAppear {
             guard sceneDelegate.tabWindow == nil else {return}
             sceneDelegate.addTabBar(windowSharedModel)
         }
+        .onChange(of: windowSharedModel.activeDevice) {
+            deviceDetailPresented = true
+        }
+        
     }
     
     @ViewBuilder

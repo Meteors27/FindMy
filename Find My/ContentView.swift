@@ -9,9 +9,15 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
+//    @State private var isPresented: Bool = true
     var body: some View {
         // TODO: OnDismiss
         MainView()
+//            .sheet(isPresented: $isPresented) {
+//                isPresented = false
+//            } content: {
+//                OnBoardingView(isPresented: $isPresented)
+//            }
     }
 }
 
@@ -44,6 +50,6 @@ struct CustomTabBar: View {
             }
             .frame(height: 55)
         }
-        .background(.thickMaterial)
+        .background(.regularMaterial)
     }
 }

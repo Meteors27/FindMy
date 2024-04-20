@@ -10,8 +10,8 @@ import SwiftUI
 // Custom View Modifiers
 extension TabView {
     @ViewBuilder
-    func tabSheet<SheetContent: View>(initialHeight: CGFloat = 100, sheetCornerRadius: CGFloat = 15, @ViewBuilder content: @escaping () -> SheetContent) -> some View {
-        self.modifier(BottomSheetModifier(initialHeight: initialHeight, sheetCornerRadius: sheetCornerRadius, sheetView: content()))
+    func tabSheet<SheetContent: View>(initialHeight: CGFloat = 100, sheetCornerRadius: CGFloat = 15, settingsDetent: Binding<PresentationDetent>, @ViewBuilder content: @escaping () -> SheetContent) -> some View {
+        self.modifier(BottomSheetModifier(initialHeight: initialHeight, sheetCornerRadius: sheetCornerRadius, sheetView: content(), settingsDetent: settingsDetent))
     }
 }
 
@@ -21,13 +21,14 @@ fileprivate struct BottomSheetModifier<SheetContent: View>: ViewModifier {
     var sheetCornerRadius: CGFloat
     var sheetView: SheetContent
     // View Properties
+    @Binding var settingsDetent: PresentationDetent
     @State private var showSheet: Bool = true
     func body(content: Content) -> some View {
         content
             .sheet(isPresented: $showSheet, content: {
                 VStack(spacing: 0) {
                     sheetView
-                        .background(.thickMaterial)
+                        .background(.regularMaterial)
                         .zIndex(0)
                     Divider()
                         .hidden()
@@ -35,10 +36,10 @@ fileprivate struct BottomSheetModifier<SheetContent: View>: ViewModifier {
                         .fill(.clear)
                         .frame(height: 55)
                 }
-                    .presentationDetents([.height(initialHeight), .medium, .fraction(0.99)])
+                    .presentationDetents([.height(initialHeight), .medium, .fraction(0.99)], selection: $settingsDetent)
                     .presentationCornerRadius(sheetCornerRadius)
                     .presentationBackgroundInteraction(.enabled(upThrough: .medium))
-                    .presentationBackground(.clear )
+                    .presentationBackground(.clear)
                     .interactiveDismissDisabled()
             })
     }

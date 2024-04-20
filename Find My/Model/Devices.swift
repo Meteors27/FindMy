@@ -67,16 +67,20 @@ enum Device: String{
         }
     }
     
+    fileprivate func regionWithPortion(_ center: CLLocationCoordinate2D, verticalPortion: Double = 0.5, span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)) -> MKCoordinateRegion {
+        return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: center.latitude + span.latitudeDelta * (verticalPortion - 0.5) * 2, longitude: center.longitude), span: span)
+    }
+    
     var region: MKCoordinateRegion {
         switch self {
         case .iphone:
-            return MKCoordinateRegion(center: .iphone, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            return regionWithPortion(.iphone, verticalPortion: 0.25)
         case .airpodspro:
-            return MKCoordinateRegion(center: .airpodspro, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            return regionWithPortion(.airpodspro, verticalPortion: 0.25)
         case .applewatch:
-            return MKCoordinateRegion(center: .applewatch, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            return regionWithPortion(.applewatch, verticalPortion: 0.25)
         case .ipad:
-            return MKCoordinateRegion(center: .ipad, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            return regionWithPortion(.ipad, verticalPortion: 0.25)
         }
     }
 }

@@ -88,7 +88,7 @@ struct ButtonsView: View {
                     .frame(width: width, height: width)
             }
         }
-        .background(.thickMaterial)
+        .background(.regularMaterial)
         .frame(width: width)
         .cornerRadius(13)
     }
