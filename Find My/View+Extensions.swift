@@ -30,11 +30,11 @@ fileprivate struct BottomSheetModifier<SheetContent: View>: ViewModifier {
                     sheetView
                         .background(.regularMaterial)
                         .zIndex(0)
-                    Divider()
-                        .hidden()
-                    Rectangle()
-                        .fill(.clear)
-                        .frame(height: 55)
+//                    Divider()
+//                        .hidden()
+//                    Rectangle()
+//                        .fill(.clear)
+//                        .frame(height: 55)
                 }
                     .presentationDetents([.height(initialHeight), .medium, .fraction(0.99)], selection: $settingsDetent)
                     .presentationCornerRadius(sheetCornerRadius)

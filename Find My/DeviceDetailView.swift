@@ -9,7 +9,10 @@ import SwiftUI
 
 struct DeviceDetailView: View {
     @Environment(WindowSharedModel.self) private var windowSharedModel
+    @Environment(SceneDelegate.self) private var sceneDelegate
     @Binding var isShow: Bool
+    
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -22,12 +25,15 @@ struct DeviceDetailView: View {
                     }
                         .padding(.trailing, 5)
                     
-                    DeviceDetailButton(title: "Find", iconName: "arrow.up", color: .green) {
+                    DeviceDetailButton(title: "Find", iconName: "arrow.up", color: .green, action: {
+                        // TODO
+                    }) {
                         Text("Nearby")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
                         .padding(.leading, 5)
+
                 }
                 DeviceDetailButton(title: "Mark as Lost", iconName: "bell.fill", color: .red) {
                     Text("Off")
@@ -47,6 +53,7 @@ struct DeviceDetailView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
                         isShow = false
+                        sceneDelegate.showTabBar()
                     }, label: {
                         Circle()
                             .fill(Color(.secondarySystemFill))
@@ -93,12 +100,20 @@ struct DeviceDetailButton<Content: View>: View {
     let title: String
     let iconName: String
     let color: Color
+    let action: (() -> Void)
     @ViewBuilder let content: () -> Content
     
+    init(title: String, iconName: String, color: Color, action: @escaping () -> Void = {}, @ViewBuilder content: @escaping () -> Content) {
+            self.title = title
+            self.iconName = iconName
+            self.color = color
+            self.action = action
+            self.content = content
+        }
     
     var body: some View {
         Button(action: {
-            // TODO: Change state
+            self.action()
         }, label: {
             VStack(alignment: .leading) {
                 Image(systemName: iconName)

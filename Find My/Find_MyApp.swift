@@ -43,6 +43,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabWindow.isHidden = false
         self.tabWindow = tabWindow
     }
+    // tabbar slide down animation
+    func removeTabBar() {
+        guard let tabWindow = tabWindow else { return }
+        UIView.animate(withDuration: 0.3) {
+            tabWindow.frame.origin.y = tabWindow.frame.maxY
+        } completion: { _ in
+            tabWindow.isHidden = true
+        }
+    }
+    // tabbar slide up animation
+    func showTabBar() {
+        guard let tabWindow = tabWindow else { return }
+        tabWindow.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            tabWindow.frame.origin.y = tabWindow.frame.minY
+        }
+    }
 }
 
 class PassThroughWindow: UIWindow {

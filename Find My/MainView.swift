@@ -61,7 +61,7 @@ struct MainView: View {
                     .padding(.vertical, 10)
                 }
                 .scrollIndicators(.hidden)
-                .scrollContentBackground(.hidden )
+                .scrollContentBackground(.hidden)
                 .toolbar(content: {
                     ToolbarItem(placement: .topBarLeading) {
                         Text(windowSharedModel.activeTab.title)
@@ -109,10 +109,7 @@ struct MainView: View {
     @ViewBuilder
     func DeviceRowView(device: Device, distance: String? = nil) -> some View {
         Button {
-//            withAnimation(.easeInOut) {
-//                windowSharedModel.activeDevice = device
-//                print("Current active device is \(windowSharedModel.activeDevice.name)")
-//            }
+            sceneDelegate.removeTabBar()
             windowSharedModel.activeDevice = device
             print("Current active device is \(windowSharedModel.activeDevice.name)")
         } label: {

@@ -11,5 +11,6 @@ import SwiftUI
 class WindowSharedModel {
     var activeTab: Tab = .devices
     var activeDevice: Device = .iphone
+    var isTabBarVisible: Bool = false
 }
  

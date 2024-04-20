@@ -57,9 +57,12 @@ struct DevicesView: View {
                     position = .region(newValue.region)
                 }
             }
+            
             ButtonsView()
                 .padding()
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity, alignment: .topTrailing)
+            
+//            NearbyView()
         }
     }
 }
