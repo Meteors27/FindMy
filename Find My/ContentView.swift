@@ -9,15 +9,15 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-//    @State private var isPresented: Bool = true
+    @State private var isPresented: Bool = true
     var body: some View {
         // TODO: OnDismiss
-        MainView()
-//            .sheet(isPresented: $isPresented) {
-//                isPresented = false
-//            } content: {
-//                OnBoardingView(isPresented: $isPresented)
-//            }
+        MainView(isPresented: !isPresented)
+            .sheet(isPresented: $isPresented) {
+                isPresented = false
+            } content: {
+                OnBoardingView(isPresented: $isPresented)
+            }
     }
 }
 
