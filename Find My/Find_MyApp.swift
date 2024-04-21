@@ -88,14 +88,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             nearbyWindow.isHidden = true
         }
     }
-    // nearby window opacity animation
-//    func showNearbyWindow() {
-//        guard let nearbyWindow = nearbyWindow else { return }
-//        nearbyWindow.isHidden = false
-//        UIView.animate(withDuration: 0.3) {
-//            nearbyWindow.alpha = 1
-//        }
-//    }
 }
 
 class PassThroughWindow: UIWindow {

@@ -83,14 +83,8 @@ struct MainView: View {
                     .sheet(isPresented: $deviceDetailPresented, content: {
                         VStack(spacing: 0) {
                             DeviceDetailView(isShow: $deviceDetailPresented)
-                                .zIndex(0)
-                            Divider()
-                                .hidden()
-                            Rectangle()
-                                .fill(.clear)
-                                .frame(height: 55)
                         }
-                            .presentationDetents([.height(100), .medium, .fraction(0.99)], selection: $settingsDetent)
+                            .presentationDetents([.height(110), .medium, .fraction(0.99)], selection: $settingsDetent)
                             .presentationCornerRadius(15)
                             .presentationBackgroundInteraction(.enabled(upThrough: .medium))
                             .presentationBackground(.clear)
@@ -103,6 +97,12 @@ struct MainView: View {
             .onAppear {
                 guard sceneDelegate.tabWindow == nil else {return}
                 sceneDelegate.addTabBar(windowSharedModel)
+            }
+            .onChange(of: deviceDetailPresented) {
+                if !deviceDetailPresented {
+                    sceneDelegate.showTabBar()
+                    windowSharedModel.activeDevice = nil
+                }
             }
     //        .onChange(of: windowSharedModel.activeDevice) {
     //            deviceDetailPresented = true
@@ -119,7 +119,7 @@ struct MainView: View {
             sceneDelegate.removeTabBar()
             windowSharedModel.activeDevice = device
             deviceDetailPresented = true
-            print("Current active device is \(windowSharedModel.activeDevice.name)")
+            print("Current active device is \(windowSharedModel.activeDevice?.name ?? "nil")")
         } label: {
             HStack(alignment: .top, spacing: 12) {
                 Image(systemName: device.systemName)

@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 
-enum Device: String {
+enum Device: String, CaseIterable {
     case iphone = "iphone"
     case airpodspro = "airpodspro"
     case applewatch = "applewatch"

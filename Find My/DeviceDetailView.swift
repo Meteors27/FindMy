@@ -14,60 +14,61 @@ struct DeviceDetailView: View {
     
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                DeviceHeadline(device: windowSharedModel.activeDevice, lastSeen: "1 minute ago", battery: "battery.100percent", isShow: $isShow)
-                HStack {
-                    DeviceDetailButton(title: "Play Sound", iconName: "play.fill", color: .purple) {
+        if let device = windowSharedModel.activeDevice {
+            NavigationView {
+                ScrollView {
+                    DeviceHeadline(device: device, lastSeen: "1 minute ago", battery: "battery.100percent", isShow: $isShow)
+                    HStack {
+                        DeviceDetailButton(title: "Play Sound", iconName: "play.fill", color: .purple) {
+                            Text("Off")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                            .padding(.trailing, 5)
+                        
+                        DeviceDetailButton(title: "Find", iconName: "arrow.up", color: .green, action: {
+                            sceneDelegate.showNearbyWindow(windowSharedModel)
+                        }) {
+                            Text("Nearby")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                            .padding(.leading, 5)
+
+                    }
+                    DeviceDetailButton(title: "Mark as Lost", iconName: "bell.fill", color: .red) {
                         Text("Off")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
-                        .padding(.trailing, 5)
-                    
-                    DeviceDetailButton(title: "Find", iconName: "arrow.up", color: .green, action: {
-                        sceneDelegate.showNearbyWindow(windowSharedModel)
-                    }) {
-                        Text("Nearby")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                    Spacer()
+                }
+                .padding(.top, -15)
+                .padding(.horizontal, 15)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Text(device.name)
+                            .font(.title3)
+                            .bold()
                     }
-                        .padding(.leading, 5)
-
-                }
-                DeviceDetailButton(title: "Mark as Lost", iconName: "bell.fill", color: .red) {
-                    Text("Off")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-            }
-            .padding(.top, -15)
-            .padding(.horizontal, 15)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Text(windowSharedModel.activeDevice.name)
-                        .font(.title3)
-                        .bold()
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        isShow = false
-                        sceneDelegate.showTabBar()
-                    }, label: {
-                        Circle()
-                            .fill(Color(.secondarySystemFill))
-                            .frame(width: 30, height: 30)
-                            .overlay(
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                                    .foregroundColor(.secondary)
-                            )
-                    })
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            isShow = false
+                        }, label: {
+                            Circle()
+                                .fill(Color(.secondarySystemFill))
+                                .frame(width: 30, height: 30)
+                                .overlay(
+                                    Image(systemName: "xmark")
+                                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                                        .foregroundColor(.secondary)
+                                )
+                        })
+                    }
                 }
             }
         }
-    }
+        }
 }
 
 struct DeviceHeadline: View {

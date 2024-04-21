@@ -10,7 +10,7 @@ import SwiftUI
 // Custom View Modifiers
 extension TabView {
     @ViewBuilder
-    func tabSheet<SheetContent: View>(initialHeight: CGFloat = 100, sheetCornerRadius: CGFloat = 15, settingsDetent: Binding<PresentationDetent>, @ViewBuilder content: @escaping () -> SheetContent) -> some View {
+    func tabSheet<SheetContent: View>(initialHeight: CGFloat = 110, sheetCornerRadius: CGFloat = 15, settingsDetent: Binding<PresentationDetent>, @ViewBuilder content: @escaping () -> SheetContent) -> some View {
         self.modifier(BottomSheetModifier(initialHeight: initialHeight, sheetCornerRadius: sheetCornerRadius, sheetView: content(), settingsDetent: settingsDetent))
     }
 }

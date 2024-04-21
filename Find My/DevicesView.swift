@@ -52,9 +52,15 @@ struct DevicesView: View {
                 .tag(Device.ipad)
                 .annotationTitles(.hidden)
             }
-            .onChange(of: windowSharedModel.activeDevice) { oldValue, newValue in
-                withAnimation {
-                    position = .region(newValue.region)
+            .onChange(of: windowSharedModel.activeDevice) {
+                if windowSharedModel.activeDevice != nil{
+                    withAnimation {
+                        position = .region(windowSharedModel.activeDevice!.region)
+                    }
+                } else {
+                    withAnimation {
+                        position = .automatic
+                    }
                 }
             }
             

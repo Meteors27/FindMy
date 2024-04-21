@@ -22,11 +22,13 @@ struct NearbyView: View {
                 Text("FINDING")
                     .foregroundColor(.white)
                     .font(.subheadline)
+                if let device = windowSharedModel.activeDevice {
+                    Text(device.name)
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                        .bold()
+                }
                 
-                Text(windowSharedModel.activeDevice.name)
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
-                    .bold()
                 
                 VStack {
                     Image(systemName: "circle.fill")
