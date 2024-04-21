@@ -26,7 +26,7 @@ struct DeviceDetailView: View {
                         .padding(.trailing, 5)
                     
                     DeviceDetailButton(title: "Find", iconName: "arrow.up", color: .green, action: {
-                        sceneDelegate.showNearbyWindow()
+                        sceneDelegate.showNearbyWindow(windowSharedModel)
                     }) {
                         Text("Nearby")
                             .font(.caption)

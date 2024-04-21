@@ -64,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     // nearby window
-    func addNearbyWindow(_ WindowSharedModel: WindowSharedModel) {
+    func showNearbyWindow(_ WindowSharedModel: WindowSharedModel) {
         guard let scene = windowScene else { return }
         let nearbyController = UIHostingController(rootView: NearbyView().environment(WindowSharedModel).environment(self))
         nearbyController.view.backgroundColor = .clear
@@ -73,6 +73,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         nearbyWindow.rootViewController = nearbyController
         nearbyWindow.isHidden = true
         self.nearbyWindow = nearbyWindow
+        nearbyWindow.alpha = 0
+        nearbyWindow.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            nearbyWindow.alpha = 1
+        }
     }
     // nearby window opacity animation
     func removeNearbyWindow() {
@@ -84,13 +89,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     // nearby window opacity animation
-    func showNearbyWindow() {
-        guard let nearbyWindow = nearbyWindow else { return }
-        nearbyWindow.isHidden = false
-        UIView.animate(withDuration: 0.3) {
-            nearbyWindow.alpha = 1
-        }
-    }
+//    func showNearbyWindow() {
+//        guard let nearbyWindow = nearbyWindow else { return }
+//        nearbyWindow.isHidden = false
+//        UIView.animate(withDuration: 0.3) {
+//            nearbyWindow.alpha = 1
+//        }
+//    }
 }
 
 class PassThroughWindow: UIWindow {

@@ -106,7 +106,6 @@ struct MainView: View {
         .onAppear {
             guard sceneDelegate.tabWindow == nil else {return}
             sceneDelegate.addTabBar(windowSharedModel)
-            sceneDelegate.addNearbyWindow(windowSharedModel)
         }
 //        .onChange(of: windowSharedModel.activeDevice) {
 //            deviceDetailPresented = true
