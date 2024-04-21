@@ -30,7 +30,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @Observable
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     weak var windowScene: UIWindowScene?
+    // tabbar window
     var tabWindow: UIWindow?
+    // nearby window
+    var nearbyWindow: UIWindow?
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         windowScene = scene as? UIWindowScene 
     }
@@ -58,6 +61,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabWindow.isHidden = false
         UIView.animate(withDuration: 0.3) {
             tabWindow.frame.origin.y = tabWindow.frame.minY
+        }
+    }
+    // nearby window
+    func addNearbyWindow(_ WindowSharedModel: WindowSharedModel) {
+        guard let scene = windowScene else { return }
+        let nearbyController = UIHostingController(rootView: NearbyView().environment(WindowSharedModel).environment(self))
+        nearbyController.view.backgroundColor = .clear
+        // no need to use passthrough window
+        let nearbyWindow = UIWindow(windowScene: scene)
+        nearbyWindow.rootViewController = nearbyController
+        nearbyWindow.isHidden = true
+        self.nearbyWindow = nearbyWindow
+    }
+    // nearby window opacity animation
+    func removeNearbyWindow() {
+        guard let nearbyWindow = nearbyWindow else { return }
+        UIView.animate(withDuration: 0.3) {
+            nearbyWindow.alpha = 0
+        } completion: { _ in
+            nearbyWindow.isHidden = true
+        }
+    }
+    // nearby window opacity animation
+    func showNearbyWindow() {
+        guard let nearbyWindow = nearbyWindow else { return }
+        nearbyWindow.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            nearbyWindow.alpha = 1
         }
     }
 }

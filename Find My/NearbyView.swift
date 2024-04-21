@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NearbyView: View {
-    let name = "Aileen Zeigen"
+    @Environment(SceneDelegate.self) private var sceneDelegate
+    @Environment(WindowSharedModel.self) private var windowSharedModel
     let distance: Int = 45
     let direction = "ahead"
     var body: some View {
@@ -19,7 +20,7 @@ struct NearbyView: View {
                     .foregroundColor(.white)
                     .font(.subheadline)
                 
-                Text(name)
+                Text(windowSharedModel.activeDevice.name)
                     .foregroundColor(.white)
                     .font(.largeTitle)
                     .bold()
@@ -36,7 +37,9 @@ struct NearbyView: View {
                     .font(.system(size: 50, weight: .regular, design: .rounded))
                     .foregroundColor(.white)
                 HStack {
-                    CircularButton(systemName: "xmark")
+                    CircularButton(systemName: "xmark") {
+                        sceneDelegate.removeNearbyWindow()
+                    }
                     Spacer()
                     CircularButton(systemName: "message.fill")
                 }
@@ -49,9 +52,14 @@ struct NearbyView: View {
 
 struct CircularButton: View {
     var systemName: String
+    var action: () -> Void = {}
+    init(systemName: String, action: @escaping () -> Void = {}) {
+        self.systemName = systemName
+        self.action = action
+    }
     var body: some View {
         Button(action: {
-            print("Button tapped!")
+            action()
         }) {
             Image(systemName: systemName)
                 .resizable()
