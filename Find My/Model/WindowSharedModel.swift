@@ -13,7 +13,3 @@ class WindowSharedModel {
     var activeDevice: Device = .iphone
     var isTabBarVisible: Bool = false
 }
-//
-//class AppState: ObservableObject {
-//    @Published var isNearbyVisible = false
-//}

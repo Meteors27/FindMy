@@ -97,11 +97,6 @@ struct MainView: View {
                             .background(.regularMaterial)
                             .interactiveDismissDisabled()
                     })
-    //                .sheet(isPresented: $isBoardingPresented) {
-    //                    isBoardingPresented = false
-    //                } content: {
-    //                    OnBoardingView(isPresented: $isBoardingPresented)
-    //                }
 
                 }
             }
